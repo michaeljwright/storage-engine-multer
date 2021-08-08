@@ -11,9 +11,19 @@ const gcsServiceProvider = GcsService({
 });
 
 app.get("/read", async (_req: Request, res: Response) => {
-  let bucketFiles = await gcsServiceProvider.readFiles("", "LUX50001");
+  let bucketFiles = await gcsServiceProvider.readFiles("", "LUX50002");
 
   res.send(bucketFiles);
+});
+
+app.get("/merge", async (_req: Request, res: Response) => {
+  let mergedFiles = await gcsServiceProvider.mergeFiles({
+    folder: "",
+    entityUid: "dfsd4242343242",
+    luxId: "LUX50001"
+  });
+
+  res.send(mergedFiles);
 });
 
 app.post(
